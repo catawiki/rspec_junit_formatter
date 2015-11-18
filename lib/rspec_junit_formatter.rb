@@ -17,7 +17,7 @@ private
 
   def xml_dump
     xml.instruct!
-    xml.testsuite name: "rspec#{ENV['TEST_ENV_NUMBER']}", tests: example_count, failures: failure_count, errors: 0, time: "%.6f" % duration, timestamp: started.iso8601 do
+    xml.testsuite :name => "rspec#{ENV['TEST_ENV_NUMBER']}", :tests => example_count, :failures => failure_count, :errors => 0, :time => "%.6f" % duration, :timestamp => started.iso8601 do
       xml.comment! "Randomized with seed #{RSpec.configuration.seed}"
       xml.properties
       xml_dump_examples
@@ -45,14 +45,14 @@ private
     backtrace = formatted_backtrace_for(example)
 
     xml_dump_example(example) do
-      xml.failure message: exception.to_s, type: exception.class.name do
+      xml.failure :message => exception.to_s, :type => exception.class.name do
         xml.cdata! "#{exception.message}\n#{backtrace.join "\n"}"
       end
     end
   end
 
   def xml_dump_example(example, &block)
-    xml.testcase classname: classname_for(example), name: description_for(example), file: example_group_file_path_for(example), time: "%.6f" % duration_for(example), &block
+    xml.testcase :classname => classname_for(example), :name => description_for(example), :file => example_group_file_path_for(example), :time => "%.6f" % duration_for(example), &block
   end
 end
 
