@@ -12,7 +12,7 @@ class RSpecJUnitFormatter < RSpec::Core::Formatters::BaseFormatter
 private
 
   def xml
-    @xml ||= Builder::XmlMarkup.new target: output, indent: 2
+    @xml ||= Builder::XmlMarkup.new :target => output, :indent => 2
   end
 
   def xml_dump
