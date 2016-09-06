@@ -1,6 +1,7 @@
 class RSpecJUnitFormatter < RSpec::Core::Formatters::BaseFormatter
   RSpec::Core::Formatters.register self,
     :start,
+    :example_failed,
     :stop,
     :dump_summary
 
@@ -8,6 +9,9 @@ class RSpecJUnitFormatter < RSpec::Core::Formatters::BaseFormatter
     @start_notification = notification
     @started = Time.now
     super
+  end
+  
+  def example_failed(notification)
   end
 
   def stop(notification)
