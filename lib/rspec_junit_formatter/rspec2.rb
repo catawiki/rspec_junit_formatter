@@ -47,8 +47,13 @@ private
   def exception_for(example)
     example.execution_result[:exception]
   end
+  alias :test_failure_for :exception_for
 
   def formatted_backtrace_for(example)
     format_backtrace exception_for(example).backtrace, example
+  end
+
+  def full_test_failure_for(example)
+    "#{exception_for(example).message}\n#{formatted_backtrace_for(example).join "\n"}"
   end
 end

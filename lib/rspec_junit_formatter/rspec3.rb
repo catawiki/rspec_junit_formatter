@@ -65,10 +65,18 @@ private
   end
 
   def exception_for(notification)
-    notification.fully_formatted(0).split("\n").second
+    notification.example.execution_result.exception
   end
 
   def formatted_backtrace_for(notification)
-    notification.fully_formatted(0).split("\n")[2..-1].join("\n")
+    notification.formatted_backtrace
+  end
+
+  def test_failure_for(notification)
+    notification.fully_formatted(0).strip.split("\n").second
+  end
+
+  def full_test_failure_for(notification)
+    notification.fully_formatted(0).strip.split("\n")[2..-1].join("\n")
   end
 end

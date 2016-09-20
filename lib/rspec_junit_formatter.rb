@@ -42,11 +42,12 @@ private
 
   def xml_dump_failed(example)
     exception = exception_for(example)
-    backtrace = formatted_backtrace_for(example)
+    test_failure = test_failure_for(example)
+    full_test_failure = full_test_failure_for(example)
 
     xml_dump_example(example) do
-      xml.failure :message => exception.to_s, :type => exception.class.name do
-        xml.cdata! "#{exception.message}\n#{backtrace.join "\n"}"
+      xml.failure :message => test_failure, :type => exception.class.name do
+        xml.cdata! full_test_failure
       end
     end
   end
