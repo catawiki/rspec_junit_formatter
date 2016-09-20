@@ -10,7 +10,7 @@ class RSpecJUnitFormatter < RSpec::Core::Formatters::BaseFormatter
     @started = Time.now
     super
   end
-  
+
   def example_failed(notification)
   end
 
@@ -65,10 +65,10 @@ private
   end
 
   def exception_for(notification)
-    notification.example.execution_result.exception
+    notification.fully_formatted(0).split("\n").second
   end
 
   def formatted_backtrace_for(notification)
-    notification.formatted_backtrace
+    notification.fully_formatted(0).split("\n")[2..-1].join("\n")
   end
 end
