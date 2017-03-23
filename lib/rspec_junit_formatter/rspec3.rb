@@ -48,6 +48,8 @@ private
   end
 
   def example_group_file_path_for(notification)
+    notification.example.metadata[:example_group][:example_group][:file_path]
+  rescue
     notification.example.example_group.file_path
   end
 
